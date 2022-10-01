@@ -1,5 +1,9 @@
 import express, {Request, Response} from 'express';
-import routes from './api/controllers/routes';
+import routes from './config/routes';
+import cors from 'cors';
+import AppDataSource from './config/database';
+import path from 'path';
+
 
 class App {
     private app: express.Application;
@@ -13,9 +17,9 @@ class App {
     private port = process.env.PORT || 3000
 
     private configuration(){
-        // this.app.use(cors({
-        //     origin: 'http://localhost:3000'
-        // }));
+        this.app.use(cors({
+            origin: 'http://localhost:3000'
+        }));
         this.app.set('port', this.port);
         this.app.use(express.json());
     }
@@ -31,5 +35,12 @@ class App {
     }
 }
 
-const app = new App();
-app.start();
+AppDataSource.initialize()
+.then(() => {
+    console.log("Data Source has been initialized!");
+    const app = new App();
+    app.start();
+})
+.catch((err) => {
+    console.error("Error during Data Source initialization", err);
+});
