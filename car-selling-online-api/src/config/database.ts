@@ -10,7 +10,7 @@ const AppDataSource = new DataSource({
     password: process.env.POSTGRES_PASSWORD,
     database: process.env.POSTGRES_DB,
 
-    entities: ['src/config/entities/*.ts'],
+    entities: ['src/core/entities/*.ts'],
     migrations: ['migrations/*.ts'],
 })
 

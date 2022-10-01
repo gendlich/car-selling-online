@@ -2,7 +2,6 @@ import express, {Request, Response} from 'express';
 import routes from './config/routes';
 import cors from 'cors';
 import AppDataSource from './config/database';
-import path from 'path';
 
 
 class App {
