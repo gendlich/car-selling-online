@@ -1,16 +1,16 @@
-import { IUserService } from "./../../api/interfaces";
-import { UserService } from "./../../api/services";
+import { ICarService } from "./../../api/interfaces";
+import { CarService } from "./../../api/services";
 import { Response ,Request, Router } from "express";
 
-export class UserController {
-    private userService: IUserService
+export class CarController {
+    private carService: ICarService
 
     constructor(){
-        this.userService = new UserService();
+        this.carService = new CarService();
     }
     public index = async(req: Request, res: Response) => {
-        await this.userService.findAll()
-            .then(users => res.send(users).status(200))
+        await this.carService.findAll()
+            .then(cars => res.send(cars).status(200))
             .catch(error => {
                 console.log(error)
                 res.status(500).send(error)
@@ -18,8 +18,8 @@ export class UserController {
     }
 
     public read = async(req: Request, res: Response) => {
-        await this.userService.findById(req.params.id)
-            .then(user => res.send(user).status(200))
+        await this.carService.findById(req.params.id)
+            .then(car => res.send(car).status(200))
             .catch(error => {
                 console.log(error)
                 res.status(500).send(error)
@@ -27,8 +27,8 @@ export class UserController {
     }
 
     public create = async(req: Request, res: Response) => {
-        await this.userService.create(req.body)
-            .then(user => res.send(user).status(200))
+        await this.carService.create(req.body)
+            .then(car => res.send(car).status(200))
             .catch(error => {
                 console.log(error)
                 res.status(500).send(error)
@@ -36,8 +36,8 @@ export class UserController {
     }
 
     public update = async(req: Request, res: Response) => {
-        await this.userService.update(req.params.id, req.body)
-            .then(user => res.send(user).status(200))
+        await this.carService.update(req.params.id, req.body)
+            .then(car => res.send(car).status(200))
             .catch(error => {
                 console.log(error)
                 res.status(500).send(error)
@@ -45,8 +45,8 @@ export class UserController {
     }
 
     public delete = async(req: Request, res: Response) => {
-        await this.userService.delete(req.params.id)
-            .then(user => res.send(user).status(200))
+        await this.carService.delete(req.params.id)
+            .then(car => res.send(car).status(200))
             .catch(error => {
                 console.log(error)
                 res.status(500).send(error)
