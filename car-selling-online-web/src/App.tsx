@@ -3,14 +3,14 @@ import React from "react";
 import {
   BrowserRouter
 } from 'react-router-dom'
-import Login from './pages/login';
+import { Router } from './routes';
 
 function App() {
   return (
     <BrowserRouter>
       <div>
         <Header />
-        <Login />
+        <Router />
       </div>
     </BrowserRouter>
   );
