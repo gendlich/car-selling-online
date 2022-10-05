@@ -3,4 +3,5 @@ export interface ICreateCarDto {
     modelo: string;
     marca: string;
     imgurl: string;
+    preco: number;
 }

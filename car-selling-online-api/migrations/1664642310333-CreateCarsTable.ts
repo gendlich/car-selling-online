@@ -29,6 +29,10 @@ export class CreateCarsTable1664642310333 implements MigrationInterface {
                     {
                         name: 'modelo',
                         type: 'varchar'
+                    },
+                    {
+                        name: 'preco',
+                        type: 'int'
                     }
                 ]
             })

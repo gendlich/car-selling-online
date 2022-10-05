@@ -8,7 +8,11 @@ export class CarService implements ICarService {
     carRepository = AppDataSource.getRepository(Car)
 
     findAll(): Promise<ICar[]> {
-        return this.carRepository.find();
+        return this.carRepository.find({
+            order: {
+                preco: "ASC",
+            },
+        });
     }
 
     findById(id: string): Promise<ICar> {
@@ -27,6 +31,7 @@ export class CarService implements ICarService {
         carNovo.nome = data.nome ? data.nome : carAntigo.nome;
         carNovo.modelo = data.modelo ? data.modelo : carAntigo.modelo;
         carNovo.marca = data.marca ? data.marca : carAntigo.marca;
+        carNovo.preco = data.preco ? data.preco : carAntigo.preco;
         carNovo.imgurl = data.imgurl ? data.imgurl : carAntigo.imgurl;
 
         return this.carRepository.save(carNovo);

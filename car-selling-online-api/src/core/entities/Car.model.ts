@@ -17,4 +17,7 @@ export class Car implements ICar {
 
     @Column({name: 'imgurl'})
     imgurl: string;
+
+    @Column({name: 'preco'})
+    preco: number;
 }
