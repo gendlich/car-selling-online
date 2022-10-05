@@ -4,4 +4,5 @@ export interface ICar {
     modelo: string;
     marca: string;
     imgurl: string;
+    preco: number;
 }

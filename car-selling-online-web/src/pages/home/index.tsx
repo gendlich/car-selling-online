@@ -26,7 +26,8 @@ export default function Home() {
                         modelo={carro.modelo}
                         nome={carro.nome}
                         marca={carro.marca}
-                        imgurl={'https://media.istockphoto.com/photos/bmw-car-on-sunset-sky-picture-id1022249066?s=612x612'}
+                        preco={carro.preco}
+                        imgurl={carro.imgurl}
                         />
                     ))}
                 </div>

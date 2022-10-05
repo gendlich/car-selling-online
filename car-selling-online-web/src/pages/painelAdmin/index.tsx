@@ -24,7 +24,7 @@ export default function PainelAdmin() {
     }
     
     return (
-        <div className="lg:w-1/2 w-3/4 bg-secundary mt-16 rounded m-auto text-center flex flex-col">
+        <div className="lg:w-1/2 w-3/4 bg-secundary mt-16 rounded m-auto text-center flex shadow-2xl flex-col">
             <Link to={'/carro/novo'}>
                 <div className='hover:bg-secundaryDark rounded bg-secundaryLight p-2'>
                     Criar novo Carro
@@ -47,7 +47,7 @@ export default function PainelAdmin() {
                         <td>{carro.nome}</td>
                         <td>{carro.modelo}</td>
                         <td>{carro.marca}</td>
-                        <td>{carro.nome}</td>
+                        <td>{carro.preco}</td>
                         <td className='hidden lg:block'>{carro.id}</td>
                         <td><Link to={`/carro/${carro.id}/editar`}>Editar</Link> | <button onClick={() => handleRemove(carro.id)}>Deletar</button></td>
                     </tr>

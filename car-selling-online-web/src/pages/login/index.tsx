@@ -19,8 +19,8 @@ export default function Login() {
     });
 
     return (
-        <div className="text-white text-center ">
-            <div className="w-5/6 lg:w-1/3 pt-8 bg-secundary m-auto rounded-lg my-16">
+        <div className="text-white text-center">
+            <div className="w-5/6 lg:w-1/3 pt-8 shadow-2xl bg-secundary m-auto rounded-lg my-16">
                 <span className="text-3xl">Login</span>
                 <form>
                     {campos.map((campo, index) => (

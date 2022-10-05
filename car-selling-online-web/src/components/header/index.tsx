@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 export default function Header() {
     return (
-        <div className='h-16 bg-primary flex flex-row justify-between items-center'>
+        <div className='h-16 bg-primary flex flex-row justify-between items-center shadow-2xl'>
             <div className='m-2 p-2 flex flex-row flex-nowrap hover:bg-primaryLight rounded-full'>
                 <Link to='/'><strong>Car</strong>Selling</Link>
             </div>

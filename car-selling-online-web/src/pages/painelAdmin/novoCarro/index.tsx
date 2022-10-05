@@ -37,6 +37,11 @@ export default function NovoCarro() {
         type: 'text',
         texto: 'Url da Imagem',
         apiValue: updateCarroForm?.imgurl
+    },{
+        value: 'preco',
+        type: 'text',
+        texto: 'Preço',
+        apiValue: updateCarroForm?.preco
     }];
 
     function onChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -59,7 +64,7 @@ export default function NovoCarro() {
     }
 
     return (
-        <div className="w-5/6 lg:w-1/3 pt-8 bg-secundary m-auto text-white text-center rounded-lg my-16">
+        <div className="w-5/6 lg:w-1/3 pt-8 bg-secundary m-auto text-white text-center rounded-lg shadow-2xl my-16">
             <span className="text-3xl">{isEdit ? 'Editar filme' : 'Novo Carro'}</span>
             <form onSubmit={isEdit ? handleUpdate: handleInsert}>
                 {campos.map((campo, index) => (
