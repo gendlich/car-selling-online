@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
-import axios from 'axios';
+import { baseApiRequest } from './api/baseApiRequest';
 
 interface AuthContextData {
     authenticated: boolean;
@@ -17,12 +17,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const Login = async (email?: string, senha?: string): Promise<string | undefined> => {
         if (!!email && !!senha) {
             try {
-                const { data } = await axios.post('http://localhost:3001/api/login/', {email, senha});
+                const { data } = await baseApiRequest.post('login/', {email, senha});
 
-                localStorage.setItem(ACCESS_TOKEN, data);
+                localStorage.setItem(ACCESS_TOKEN, data.token);
 
                 setAuthenticated(true);
-                return data;
+                return data.token;
             } catch (e) {
                 setAuthenticated(false);
             }

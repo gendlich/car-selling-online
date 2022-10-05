@@ -1,10 +1,13 @@
 import { useState } from "react"
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from "../../authContext";
+import { baseApiRequest } from "../../api/baseApiRequest";
 
-export default function Login() {
-    const { Login } = useAuth();
+export default function Cadastro() {
     const campos = [{
+        value: 'nome',
+        type: 'text',
+        texto: 'Nome'
+    },{
         value: 'email',
         type: 'text',
         texto: 'E-Mail'
@@ -15,21 +18,23 @@ export default function Login() {
     }];
 
     const navigate = useNavigate()
-    const [loginForm, setLoginForm] = useState({
+    const [signupForm, setSignupForm] = useState({
+        nome: "",
         email: "",
         senha: ""
     });
 
     function onChange(event: React.ChangeEvent<HTMLInputElement>) {
         const { name, value } = event.target
-        setLoginForm({ ...loginForm, [name]: value })
+        setSignupForm({ ...signupForm, [name]: value })
     }
 
-    function handleLogin(event: React.FormEvent<HTMLFormElement>) {
+    function handleSignup(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        Login(loginForm.email, loginForm.senha).then((response) => {
+        baseApiRequest.post('/registro', signupForm)
+            .then((response) => {
             if (response) {
-                window.alert('Login realizado com sucesso')
+                window.alert('Registro realizado com sucesso')
                 navigate('/');
             }
         })
@@ -39,8 +44,8 @@ export default function Login() {
     return (
         <div className="text-white text-center">
             <div className="w-5/6 lg:w-1/3 pt-8 shadow-2xl bg-secundary m-auto rounded-lg my-16">
-                <span className="text-3xl">Login</span>
-                <form onSubmit={handleLogin}>
+                <span className="text-3xl">Cadastro</span>
+                <form onSubmit={handleSignup}>
                     {campos.map((campo, index) => (
                         <div key={index} className="p-3 flex text-start flex-col">
                             <input className="text-primaryDark text-xl p-2 rounded-lg" id={campo.value} name={campo.value} type={campo.type} onChange={onChange} />
@@ -48,11 +53,10 @@ export default function Login() {
                         </div>
                     ))}
                     <div>
-                        <button className="bg-secundaryDark w-full py-4 rounded-lg hover:bg-secundaryLight" type="submit">LOGIN</button>
+                        <button className="bg-secundaryDark w-full py-4 rounded-lg hover:bg-secundaryLight" type="submit">CONFIRMAR REGISTRO</button>
                     </div>
                 </form>
             </div>
-            <span>Não é cadastrado ainda? <Link to={'/cadastro'}><strong className="text-primaryLight" >cadastre-se aqui!</strong></Link></span>
         </div>
     );
 }

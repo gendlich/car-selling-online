@@ -55,7 +55,7 @@ export class UserController {
 
     public login = async(req: Request, res: Response) => {
         await this.userService.login(req.body)
-        .then(token => res.send(token).status(200))
+        .then(token => res.send({token}).status(200))
         .catch(error => {
             console.log(error)
             res.status(403).send(error)

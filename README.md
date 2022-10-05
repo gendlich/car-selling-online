@@ -14,22 +14,23 @@
 
 ## ROTAS API
 - ` TABELA USERS `
+- `/POST/ http://localhost:PORTA/api/registro/`: REGISTRO DE USUARIO
+- `/POST/ http://localhost:PORTA/api/login/`: AUTENTICAÇÃO DE USUARIO
+
 - `/GET/ http://localhost:PORTA/api/users/`: INDEX
 - `/GET/ http://localhost:PORTA/api/users/[id do usuario]`: READ
-- `/POST/ http://localhost:PORTA/api/users/`: CREATE
 - `/PUT/ http://localhost:PORTA/api/users/[id do usuario]`: UPLOAD
 - `/DELETE/ http://localhost:PORTA/api/users[id do usuario]/`: DELETE
-- `/POST/ http://localhost:PORTA/api/users/login`: LOGIN
 
 - ` TABELA CARS `
 - `/GET/ http://localhost:PORTA/api/cars/`: INDEX
 - `/GET/ http://localhost:PORTA/api/cars/[id do carro]`: READ
-- `/POST/ http://localhost:PORTA/api/cars/`: CREATE
-- `/PUT/ http://localhost:PORTA/api/cars/[id do carro]`: UPLOAD
-- `/DELETE/ http://localhost:PORTA/api/cars/[id do carro]`: DELETE
+- `/POST/ http://localhost:PORTA/api/cars/`: CREATE - Precisa de autenticação.
+- `/PUT/ http://localhost:PORTA/api/cars/[id do carro]`: UPLOAD - Precisa de autenticação.
+- `/DELETE/ http://localhost:PORTA/api/cars/[id do carro]`: DELETE - Precisa de autenticação.
 
 ## Como executar a aplicaçao WEB
-1. Abra no projeto, o arquivo `/projeto-globalsys-web/src/api/baseApiRequest.ts`
-2. Mude na linha 4 `baseURL: 'http://localhost:PORTA/api/'` o valor de `PORTA` igual ao valor `PORT` do arquivo `.env` de seu backend
+1. Abra no projeto, o arquivo `/car-selling-online-web/src/api/baseApiRequest.ts`
+2. Mude na linha 3 `const porta = 3001` o valor de `porta` igual ao valor `PORT` do arquivo `.env` de seu backend
 3. Vá para linha de comando na pasta `/car-selling-online-web/` e execute o comando `npm install` pra instalar todas as dependencias
 4. Execute o comando `npm run start` a aplicaçao WEB vai rodar na porta 3000

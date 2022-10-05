@@ -47,7 +47,6 @@ export class UserService implements IUserService {
     async login(data: ILoginDto): Promise<string> {
         const user = await this.userRepository.findOneByOrFail({email: data.email});
         const verificarSenha = await bcrypt.compare(data.senha, user.senha)
-        console.log(verificarSenha)
         if(verificarSenha) {
             const jwtPayload = {
                 nome: user.nome,

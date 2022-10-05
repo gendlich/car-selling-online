@@ -4,6 +4,7 @@ import {
     Navigate,
 } from "react-router-dom";
 import { useAuth } from "../authContext";
+import Cadastro from "../pages/cadastro";
 import CarroDetalhes from "../pages/carroDetalhes";
 import Home from "../pages/home";
 import Login from '../pages/login';
@@ -21,6 +22,7 @@ export function Router() {
     return (
         <Routes>
             <Route path='/login' element={<Login />} />
+            <Route path='/cadastro' element={<Cadastro />} />
             <Route path='/' element={<Home />} />
             <Route path='/carro/:id' element={<CarroDetalhes />} />
             <Route path='*' element={<NotFound />} />

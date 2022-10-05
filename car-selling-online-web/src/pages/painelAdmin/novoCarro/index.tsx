@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useNavigate, useParams } from 'react-router-dom';
 import { ICar } from "../../../api/interfaces/carro";
-import axios from "axios";
-import { baseApiRequest } from "../../../api/interfaces/baseApiRequest";
+import { baseApiRequest } from "../../../api/baseApiRequest";
 
 export default function NovoCarro() {
     const navigate = useNavigate();
@@ -12,7 +11,7 @@ export default function NovoCarro() {
     const [updateCarroForm, setUpdateCarroForm] = useState<ICar>();
     useEffect(() => {
         if(isEdit) {
-            axios.get(`http://localhost:3001/api/cars/${id}`).then((response) => {
+            baseApiRequest.get(`cars/${id}`).then((response) => {
                 setUpdateCarroForm(response.data)
             })
         }

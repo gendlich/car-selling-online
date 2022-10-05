@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios'
+import { baseApiRequest } from '../../api/baseApiRequest';
 import { ICar } from '../../api/interfaces/carro';
 
 
@@ -9,7 +9,7 @@ export default function CarroDetalhes() {
     const [carro, setCarro] = useState<ICar>()
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/api/cars/${id}`).then((response) => {
+        baseApiRequest.get(`cars/${id}`).then((response) => {
             setCarro(response.data);
         })
     }, [])

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { ICar } from '../../api/interfaces/carro';
 import CarroItem from './carroItem';
+import { baseApiRequest } from '../../api/baseApiRequest';
 
 export default function Home() {
     const navigate = useNavigate();
@@ -11,7 +11,7 @@ export default function Home() {
 
 
     useEffect(() => {
-        axios.get('http://localhost:3001/api/cars').then((res) => {
+        baseApiRequest.get('cars').then((res) => {
             setCarros(res.data);
         })
     }, [])

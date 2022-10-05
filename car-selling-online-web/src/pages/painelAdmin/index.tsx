@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react'
-import axios from 'axios';
 import { ICar } from '../../api/interfaces/carro';
 import { Link } from 'react-router-dom'
-import { baseApiRequest } from '../../api/interfaces/baseApiRequest';
+import { baseApiRequest } from '../../api/baseApiRequest';
 
 export default function PainelAdmin() {
     const [carros, setCarros] = useState<ICar[]>([])
 
     function atualizarTabela() {
-        axios.get('http://localhost:3001/api/cars').then((res) => {
+        baseApiRequest.get('cars').then((res) => {
             setCarros(res.data);
         })
     }
