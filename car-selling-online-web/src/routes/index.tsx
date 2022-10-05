@@ -7,6 +7,7 @@ import Home from "../pages/home";
 import Login from '../pages/login';
 import NotFound from '../pages/notFound';
 import PainelAdmin from "../pages/painelAdmin";
+import NovoCarro from "../pages/painelAdmin/novoCarro";
 
 export function Router() {
     return (
@@ -14,8 +15,12 @@ export function Router() {
             <Route path='/login' element={<Login />} />
             <Route path='/' element={<Home />} />
             <Route path='/carro/:id' element={<CarroDetalhes />} />
-            <Route path='/painel' element={<PainelAdmin />} />
             <Route path='*' element={<NotFound />} />
+
+            {/* rotas privadas */}
+            <Route path='/painel' element={<PainelAdmin />} />
+            <Route path='/carro/:id/editar' element={<NovoCarro />} />
+            <Route path='/carro/novo' element={<NovoCarro />} />
         </Routes>
     )
 }

@@ -6,14 +6,30 @@ import { Link } from 'react-router-dom'
 export default function PainelAdmin() {
     const [carros, setCarros] = useState<ICar[]>([])
 
-    useEffect(() => {
+    function atualizarTabela() {
         axios.get('http://localhost:3001/api/cars').then((res) => {
             setCarros(res.data);
         })
+    }
+
+    useEffect(() => {
+        atualizarTabela()
     }, [])
 
+    function handleRemove(id: string) {
+        axios.delete(`http://localhost:3001/api/cars/${id}`).then((response) => {
+            window.alert(`O Carro foi removido do banco de dados.`);
+            atualizarTabela()
+        });
+    }
+    
     return (
         <div className="lg:w-1/2 w-3/4 bg-secundary mt-16 rounded m-auto text-center flex flex-col">
+            <Link to={'/carro/novo'}>
+                <div className='hover:bg-secundaryDark rounded bg-secundaryLight p-2'>
+                    Criar novo Carro
+                </div>
+            </Link>
             <table className="table-auto">
               <thead>
                 <tr className='border'>
@@ -33,7 +49,7 @@ export default function PainelAdmin() {
                         <td>{carro.marca}</td>
                         <td>{carro.nome}</td>
                         <td className='hidden lg:block'>{carro.id}</td>
-                        <td><Link to={'/editar'}>Editar</Link> | <Link to={'/deletar'}>Deletar</Link></td>
+                        <td><Link to={`/carro/${carro.id}/editar`}>Editar</Link> | <button onClick={() => handleRemove(carro.id)}>Deletar</button></td>
                     </tr>
                   ))
                 }
