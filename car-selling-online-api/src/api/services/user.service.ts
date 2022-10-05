@@ -3,9 +3,14 @@ import { IUserService } from "./../interfaces";
 import AppDataSource from "./../../config/database";
 import { User } from "./../../core/entities/User.model";
 import { IUser } from "./../../core/interfaces";
+import jwt from 'jsonwebtoken';
+import { ILoginDto } from "@api/dto/request-login.dto";
+import bcrypt from 'bcrypt';
+import 'dotenv/config'
 
 export class UserService implements IUserService {
     userRepository = AppDataSource.getRepository(User)
+    BCRYPT_HASH_ROUNDS = 10
 
     findAll(): Promise<IUser[]> {
         return this.userRepository.find();
@@ -15,8 +20,10 @@ export class UserService implements IUserService {
         return this.userRepository.findOneByOrFail({id});
     }
 
-    create(data: ICreateUserDto): Promise<IUser> {
-        return this.userRepository.save(data);
+    async create(data: ICreateUserDto): Promise<IUser> {
+        const senhaCriptografada = await bcrypt.hash(data.senha, this.BCRYPT_HASH_ROUNDS)
+        const user = this.userRepository.create({...data, senha: senhaCriptografada});
+        return this.userRepository.save(user);
     }
 
     async update(id: string, data: IUpdateUserDto): Promise<IUser>{
@@ -34,5 +41,25 @@ export class UserService implements IUserService {
 
     delete(id: string): Promise<object>{
         return this.userRepository.delete(id);
+    }
+
+    
+    async login(data: ILoginDto): Promise<string> {
+        const user = await this.userRepository.findOneByOrFail({email: data.email});
+        const verificarSenha = await bcrypt.compare(data.senha, user.senha)
+        console.log(verificarSenha)
+        if(verificarSenha) {
+            const jwtPayload = {
+                nome: user.nome,
+                id: user.id
+            }
+            const jwtSecretKey = `${process.env.JWT_SECRET_KEY}`
+            const token = jwt.sign(jwtPayload, jwtSecretKey)
+            console.log(token)
+            return token
+        }
+        else {
+            return 'dados invalidos'
+        }
     }
 }

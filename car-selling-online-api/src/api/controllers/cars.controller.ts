@@ -1,6 +1,6 @@
 import { ICarService } from "./../../api/interfaces";
 import { CarService } from "./../../api/services";
-import { Response ,Request, Router } from "express";
+import { Response ,Request } from "express";
 
 export class CarController {
     private carService: ICarService
