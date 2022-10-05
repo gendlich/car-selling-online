@@ -1,5 +1,4 @@
-import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 export default function Header() {
     return (
@@ -9,7 +8,6 @@ export default function Header() {
             </div>
             <div className='m-2 p-2 flex flex-row flex-nowrap'>
             <Link className='hover:bg-primaryLight p-2 rounded-full' to='/login'>Login</Link>
-            <Link className='bg-primaryLight hover:bg-secundaryLight p-2 rounded-full' to='/cadastro'>Cadastrar</Link>
             </div>
         </div>
     )
