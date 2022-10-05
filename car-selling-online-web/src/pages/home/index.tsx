@@ -18,7 +18,7 @@ export default function Home() {
 
         return (
             <>
-                <div className='bg-secundary flex flex-col text-white m-4 rounded items-center lg:w-1/2 lg:mx-auto lg:justify-center lg:flex-row lg:flex-wrap'>
+                <div className='flex flex-col text-white m-4 rounded items-center lg:w-1/2 lg:mx-auto lg:justify-center lg:flex-row lg:flex-wrap'>
                     {carros.map((carro) => (
                         <CarroItem 
                         key={carro.id}
