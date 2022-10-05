@@ -1,8 +1,10 @@
 import axios from "axios";
 import { useState } from "react"
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from "../../authContext";
 
 export default function Login() {
+    const { Login } = useAuth();
     const campos = [{
         value: 'email',
         type: 'text',
@@ -26,12 +28,10 @@ export default function Login() {
 
     function handleLogin(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        axios.post('http://localhost:3001/api/login/', loginForm).then((response) => {
-            if (response.data) {
-                localStorage.setItem('token', response.data)
+        Login(loginForm.email, loginForm.senha).then((response) => {
+            if (response) {
                 window.alert('Login realizado com sucesso')
                 navigate('/');
-                window.location.reload();
             }
         })
     }
