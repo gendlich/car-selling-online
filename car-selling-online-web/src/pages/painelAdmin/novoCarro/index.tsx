@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import { useNavigate, useParams } from 'react-router-dom';
 import { ICar } from "../../../api/interfaces/carro";
 import axios from "axios";
+import { baseApiRequest } from "../../../api/interfaces/baseApiRequest";
 
 export default function NovoCarro() {
     const navigate = useNavigate();
@@ -51,14 +52,14 @@ export default function NovoCarro() {
 
     function handleUpdate(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        axios.put(`http://localhost:3001/api/cars/${id}`, updateCarroForm).then(() => { });
+        baseApiRequest.put(`cars/${id}`, updateCarroForm).then(() => { });
         window.alert(`O ${updateCarroForm?.nome} foi atualizado.`);
         navigate(`/painel`)
     }
 
     function handleInsert(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        axios.post(`http://localhost:3001/api/cars/`, updateCarroForm).then(() => { });
+        baseApiRequest.post(`cars/`, updateCarroForm).then(() => { });
         window.alert(`O ${updateCarroForm?.nome} foi criado.`);
         navigate(`/painel`)
     }

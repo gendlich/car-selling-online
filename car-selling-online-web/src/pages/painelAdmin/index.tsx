@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios';
 import { ICar } from '../../api/interfaces/carro';
 import { Link } from 'react-router-dom'
+import { baseApiRequest } from '../../api/interfaces/baseApiRequest';
 
 export default function PainelAdmin() {
     const [carros, setCarros] = useState<ICar[]>([])
@@ -17,7 +18,7 @@ export default function PainelAdmin() {
     }, [])
 
     function handleRemove(id: string) {
-        axios.delete(`http://localhost:3001/api/cars/${id}`).then((response) => {
+        baseApiRequest.delete(`cars/${id}`).then((response) => {
             window.alert(`O Carro foi removido do banco de dados.`);
             atualizarTabela()
         });
