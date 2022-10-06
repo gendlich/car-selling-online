@@ -16,12 +16,7 @@
 - ` TABELA USERS `
 - `/POST/ http://localhost:PORTA/api/registro/`: REGISTRO DE USUARIO
 - `/POST/ http://localhost:PORTA/api/login/`: AUTENTICAÇÃO DE USUARIO
-
-- `/GET/ http://localhost:PORTA/api/users/`: INDEX
-- `/GET/ http://localhost:PORTA/api/users/[id do usuario]`: READ
-- `/PUT/ http://localhost:PORTA/api/users/[id do usuario]`: UPLOAD
-- `/DELETE/ http://localhost:PORTA/api/users[id do usuario]/`: DELETE
-
+- 
 - ` TABELA CARS `
 - `/GET/ http://localhost:PORTA/api/cars/`: INDEX
 - `/GET/ http://localhost:PORTA/api/cars/[id do carro]`: READ
